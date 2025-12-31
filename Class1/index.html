@@ -25,12 +25,18 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
+
     <script>
       const rootElement = document.getElementById("root");
 
       const headingElement = React.createElement(
         "h1",
-        null,
+        {
+          style: {
+            backgroundColor: "red",
+            color: "white",
+          },
+        },
         "Hello from React"
       );
       ReactDOM.render(headingElement, rootElement);
