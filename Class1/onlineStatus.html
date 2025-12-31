@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Status</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Problem 1: Online Status Component
+        Problem Statement
+        Create a React component named UserStatus.
+        Requirements
+        ● The component should accept two props:
+        ○ username
+        ○ isOnline
+        ● It should render:
+        ○ the username
+        ○ "🟢" if isOnline is true ( ctrl + cmd + space )
+        ○ "🔴" if isOnline is false
+        The output should be exactly:
+        username 🟢
+        or
+        username � -->
+
+    <!--Status Component -->
+    <script type="text/babel">
+      function UserStatus({ userName, isOnline }) {
+        return (
+          <h1>
+            UserStatus: {userName} {isOnline ? "🟢" : "🔴"}
+          </h1>
+        );
+      }
+
+      ReactDOM.render(
+        <UserStatus userName="Md Imran" isOnline={false} />,
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
