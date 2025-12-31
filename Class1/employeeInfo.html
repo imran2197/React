@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Info</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      //         Problem 2: Employee Info Component
+      // Problem Statement
+      // Create a React component named EmployeeInfo.
+      // Requirements
+      // ● The component should accept two props:
+      // ○ company
+      // ○ experience
+      // The employee name must be hardcoded as:
+      // Rohan
+      // ●
+      // ● The output should be:
+      // <h1>
+      //  Hi ASD works at {company} with {experience} years
+      // of experience
+      // </h1>
+
+      function EmployeeInfo({ company, experience }) {
+        let userName = "Md Imran";
+        return (
+          <h1>
+            Hi {userName} works at {company} with {experience} years of
+            experience
+          </h1>
+        );
+      }
+
+      ReactDOM.render(
+        <EmployeeInfo company="Genpact" experience={5} />,
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
