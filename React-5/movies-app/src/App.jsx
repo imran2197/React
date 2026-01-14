@@ -1,5 +1,16 @@
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import WatchList from "./components/WatchList";
+import NavBar from "./components/NavBar";
+
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline text-center">Hello world!</h1>
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/watchlist" element={<WatchList />}></Route>
+      </Routes>
+    </>
   )
 }
