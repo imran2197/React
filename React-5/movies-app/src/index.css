@@ -6,7 +6,7 @@
 
 /* Base link styles */
 li a {
-  padding: 12px 20px;
+  padding: 21px;
   display: flex;
   align-items: center;
   transition: all 0.2s ease;
@@ -14,13 +14,14 @@ li a {
 
 /* Desktop active */
 .active {
-  color: #ffa300;
+  background-color: #ffa300;
+  color: #ffffff
 }
 
 @media (min-width: 768px) {
-  .active {
+  /* .active {
     border-bottom: 4px solid #ffa300;
-  }
+  } */
 }
 
 /* Mobile active */
@@ -29,9 +30,4 @@ li a {
     background-color: rgba(255, 163, 0, 0.15);
     border-left: 4px solid #ffa300;
   }
-}
-
-/* Hover */
-li a:hover {
-  color: #ffa300;
 }
