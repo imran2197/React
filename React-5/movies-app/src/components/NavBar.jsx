@@ -43,9 +43,9 @@ function NavBar() {
           className="md:hidden yellowColor text-2xl"
         >
           {open ? (
-            <i class="fa fa-times" aria-hidden="true"></i>
+            <i className="fa fa-times" aria-hidden="true"></i>
           ) : (
-            <i class="fa fa-bars" aria-hidden="true"></i>
+            <i className="fa fa-bars" aria-hidden="true"></i>
           )}
         </button>
       </div>
