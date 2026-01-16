@@ -6,7 +6,8 @@ function NavBar() {
   const [open, setOpen] = useState(false);
 
   const navData = [
-    { label: "Popular Movies", link: "/" },
+    { label: "Home", link: "/" },
+    { label: "Popular Movies", link: "/popularmovies" },
     { label: "Watch List", link: "/watchlist" },
   ];
 
@@ -48,9 +49,11 @@ function NavBar() {
           ))}
         </ul>
       </div>
+
+      {/* Mobile View */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
-          open ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
         } bg-[#0f0f0f]`}
       >
         <ul>

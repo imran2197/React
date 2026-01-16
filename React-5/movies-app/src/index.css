@@ -15,7 +15,7 @@ li a {
 /* Desktop active */
 .active {
   background-color: #ffa300;
-  color: #ffffff
+  color: #ffffff;
 }
 
 @media (min-width: 768px) {
@@ -30,4 +30,11 @@ li a {
     background-color: rgba(255, 163, 0, 0.15);
     border-left: 4px solid #ffa300;
   }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  scrollbar-width: none;
 }

@@ -11,7 +11,8 @@ export default function App() {
       <GlobalLoader />
       <NavBar />
       <Routes>
-        <Route path="/" element={<PopularMovies />}></Route>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/popularmovies" element={<PopularMovies />}></Route>
         <Route path="/watchlist" element={<WatchList />}></Route>
       </Routes>
     </>

@@ -7,4 +7,16 @@ export const tmdbService = {
       params: { page },
     });
   },
+
+  getTrendingMovies() {
+    return tmdbApi.get(TMDB_ENDPOINTS.TRENDING);
+  },
+
+  getTopRatedMovies() {
+    return tmdbApi.get(TMDB_ENDPOINTS.TOP_RATED);
+  },
+
+  getUpcomingMovies() {
+    return tmdbApi.get(TMDB_ENDPOINTS.UPCOMING);
+  },
 };

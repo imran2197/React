@@ -14,8 +14,8 @@ function PopularMovies() {
       setTotalPages(res.data.total_pages);
       window.scrollTo({
         top: 0,
-        behavior: "smooth"
-      })
+        behavior: "smooth",
+      });
     });
   }, [pageNo]);
 
@@ -32,7 +32,7 @@ function PopularMovies() {
   return (
     <div>
       <div className="text-2xl text-center font-bold m-5">
-        <h1>Popular Movies</h1>
+        <h2>🔥 Popular Movies</h2>
       </div>
       <div className="flex justify-evenly flex-wrap gap-8 my-4">
         {moviesData.map((movie) => {

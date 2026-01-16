@@ -1,13 +1,12 @@
 import React from "react";
-
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
+import { IMAGE_BASE_URL } from "../constants/tmdb.constants";
 
 function MovieCard({ movie }) {
   return (
     <div className="relative h-[40vh] w-60 rounded-xl overflow-hidden shadow-lg group cursor-pointer transform transition duration-300 hover:scale-105">
       {/* Poster Image */}
       <img
-        src={`${IMAGE_BASE_URL}${movie.poster_path}`}
+        src={`${IMAGE_BASE_URL}/w500${movie.poster_path}`}
         alt={movie.title}
         className="h-full w-full object-cover"
       />
