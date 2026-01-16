@@ -1,6 +1,5 @@
 import React from 'react'
-import Banner from './Banner'
-import Movies from './Movies'
+import Banner from '../components/Banner'
 
 function Home() {
   return (
