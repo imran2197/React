@@ -8,7 +8,7 @@ function HeroCarousel({ movies }) {
   // Auto slide
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % movies.length);
+      setActiveIndex((prev) => (prev + 1) % movies?.length);
     }, 5000);
 
     return () => clearInterval(interval);
@@ -50,7 +50,7 @@ function HeroCarousel({ movies }) {
 
       {/* Indicators */}
       <div className="absolute bottom-6 left-[40%] md:left-[50%] flex gap-2">
-        {movies.map((_, index) => (
+        {movies?.map((_, index) => (
           <button
             key={index}
             onClick={() => setActiveIndex(index)}

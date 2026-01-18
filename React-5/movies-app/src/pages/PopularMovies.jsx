@@ -7,6 +7,19 @@ function PopularMovies() {
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [moviesData, setMoviesData] = useState([]);
+  const [watchList, setWatchList] = useState([]);
+  console.log(watchList);
+
+  const addToWatchList = (movieObj) => {
+    setWatchList([...watchList, movieObj]);
+  };
+
+  const removeFromWatchList = (movieObj) => {
+    const filteredData = watchList.filter((item) => {
+      return item.id != movieObj.id;
+    });
+    setWatchList(filteredData);
+  };
 
   useEffect(() => {
     tmdbService.getPopularMovies(pageNo).then((res) => {
@@ -36,15 +49,25 @@ function PopularMovies() {
       </div>
       <div className="flex justify-evenly flex-wrap gap-8 my-4">
         {moviesData.map((movie) => {
-          return <MovieCard key={movie.id} movie={movie} />;
+          return (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              watchList={watchList}
+              addToWatchList={addToWatchList}
+              removeFromWatchList={removeFromWatchList}
+            />
+          );
         })}
       </div>
-      <Pagination
-        pageNo={pageNo}
-        totalPages={totalPages}
-        handlePrevious={handlePrevious}
-        handleNext={handleNext}
-      />
+      {moviesData.length > 0 && (
+        <Pagination
+          pageNo={pageNo}
+          totalPages={totalPages}
+          handlePrevious={handlePrevious}
+          handleNext={handleNext}
+        />
+      )}
     </div>
   );
 }
