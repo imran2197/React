@@ -11,14 +11,17 @@ function PopularMovies() {
   console.log(watchList);
 
   const addToWatchList = (movieObj) => {
-    setWatchList([...watchList, movieObj]);
+    const updatedWatchList = [...watchList, movieObj];
+    setWatchList(updatedWatchList);
+    localStorage.setItem("watchlist", JSON.stringify(updatedWatchList));
   };
 
   const removeFromWatchList = (movieObj) => {
-    const filteredData = watchList.filter((item) => {
+    const updatedWatchList = watchList.filter((item) => {
       return item.id != movieObj.id;
     });
-    setWatchList(filteredData);
+    setWatchList(updatedWatchList);
+    localStorage.setItem("watchlist", JSON.stringify(updatedWatchList));
   };
 
   useEffect(() => {
@@ -31,6 +34,12 @@ function PopularMovies() {
       });
     });
   }, [pageNo]);
+
+  useEffect(() => {
+    const allWatchList = JSON.parse(localStorage.getItem("watchlist"));
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setWatchList(allWatchList ? allWatchList : []);
+  }, []);
 
   const handlePrevious = () => {
     if (pageNo > 1) {

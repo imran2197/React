@@ -21,7 +21,7 @@ function Home() {
       setTrending(trendingRes.data.results);
       setTopRated(topRatedRes.data.results);
       setUpcoming(upcomingRes.data.results);
-      setHeroMovie(popularRes.data.results.slice(0, 5));
+      setHeroMovie(popularRes?.data?.results?.slice(0, 5));
     });
   }, []);
 
