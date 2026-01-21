@@ -1,28 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { tmdbService } from "../services/tmdb.service";
 import MovieCard from "../components/MovieCard";
 import Pagination from "../components/Pagination";
+import WatchListContext from "../context/WatchListContext";
 
 function PopularMovies() {
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [moviesData, setMoviesData] = useState([]);
-  const [watchList, setWatchList] = useState([]);
-  console.log(watchList);
-
-  const addToWatchList = (movieObj) => {
-    const updatedWatchList = [...watchList, movieObj];
-    setWatchList(updatedWatchList);
-    localStorage.setItem("watchlist", JSON.stringify(updatedWatchList));
-  };
-
-  const removeFromWatchList = (movieObj) => {
-    const updatedWatchList = watchList.filter((item) => {
-      return item.id != movieObj.id;
-    });
-    setWatchList(updatedWatchList);
-    localStorage.setItem("watchlist", JSON.stringify(updatedWatchList));
-  };
+  const { watchList, addToWatchList, removeFromWatchList } =
+    useContext(WatchListContext);
 
   useEffect(() => {
     tmdbService.getPopularMovies(pageNo).then((res) => {
@@ -34,12 +21,6 @@ function PopularMovies() {
       });
     });
   }, [pageNo]);
-
-  useEffect(() => {
-    const allWatchList = JSON.parse(localStorage.getItem("watchlist"));
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setWatchList(allWatchList ? allWatchList : []);
-  }, []);
 
   const handlePrevious = () => {
     if (pageNo > 1) {

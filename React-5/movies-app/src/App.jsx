@@ -4,17 +4,20 @@ import NavBar from "./components/NavBar";
 import PopularMovies from "./pages/PopularMovies";
 import GlobalLoader from "./components/GlobalLoader";
 import WatchList from "./pages/WatchList";
+import { WatchListContextWrapper } from "./context/WatchListContext";
 
 export default function App() {
   return (
     <>
       <GlobalLoader />
       <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/popularmovies" element={<PopularMovies />}></Route>
-        <Route path="/watchlist" element={<WatchList />}></Route>
-      </Routes>
+      <WatchListContextWrapper>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/popularmovies" element={<PopularMovies />}></Route>
+          <Route path="/watchlist" element={<WatchList />}></Route>
+        </Routes>
+      </WatchListContextWrapper>
     </>
   );
 }
