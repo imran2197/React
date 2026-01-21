@@ -4,7 +4,6 @@ import { genres } from "../constants/genres";
 import WatchListContext from "../context/WatchListContext";
 
 function WatchList() {
-  // const [watchList, setWatchList] = useState([]);
   const { watchList, setWatchList } = useContext(WatchListContext);
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("");

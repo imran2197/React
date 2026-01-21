@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IMAGE_BASE_URL } from "../constants/tmdb.constants";
+import WatchListContext from "../context/WatchListContext";
 
 function WatchlistCard({ genres = [], movie }) {
+  const { removeFromWatchList } = useContext(WatchListContext);
   const getGenre = () => {
     if (!genres?.length || !movie?.genre_ids?.length) return "";
 
@@ -27,7 +29,10 @@ function WatchlistCard({ genres = [], movie }) {
         </span>
 
         {/* Remove */}
-        <button className="absolute top-3 right-3 bg-red-600 text-white text-xs px-3 py-1 rounded-md hover:bg-red-700 cursor-pointer">
+        <button
+          className="absolute top-3 right-3 bg-red-600 text-white text-xs px-3 py-1 rounded-md hover:bg-red-700 cursor-pointer z-100"
+          onClick={() => removeFromWatchList(movie)}
+        >
           Remove
         </button>
 
