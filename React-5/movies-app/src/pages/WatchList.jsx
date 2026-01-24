@@ -129,7 +129,7 @@ function WatchList() {
       </div>
 
       {watchList?.length > 0 ? (
-        <div className="grid gap-6 grid-cols-2 sm: grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="grid gap-6 sm: grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {filteredData.map((movie) => (
             <WatchlistCard key={movie.id} genres={genres} movie={movie} />
           ))}

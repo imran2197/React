@@ -29,7 +29,7 @@ function MovieRow({ title, movies }) {
                    bg-black/70 text-white w-10 h-10 rounded-full
                    items-center justify-center hover:bg-black"
       >
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        <i className="fa fa-chevron-left" aria-hidden="true"></i>
       </button>
 
       {/* Movies Row */}
@@ -40,7 +40,7 @@ function MovieRow({ title, movies }) {
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="min-w-[160px] md:min-w-[200px]
+            className="min-w-[200px] md:min-w-[200px]
                        h-[300px] rounded-xl overflow-hidden
                        transition-transform duration-300
                        hover:scale-105"
@@ -61,7 +61,7 @@ function MovieRow({ title, movies }) {
                    bg-black/70 text-white w-10 h-10 rounded-full
                    items-center justify-center hover:bg-black"
       >
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <i className="fa fa-chevron-right" aria-hidden="true"></i>
       </button>
     </section>
   );
