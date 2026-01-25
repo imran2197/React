@@ -23,4 +23,24 @@ export const tmdbService = {
   getUpcomingMovies() {
     return tmdbApi.get(TMDB_ENDPOINTS.UPCOMING);
   },
+
+  getMovieDetails(id) {
+    return tmdbApi.get(`/movie/${id}`);
+  },
+
+  getMovieVideos(id) {
+    return tmdbApi.get(`/movie/${id}/videos`);
+  },
+
+  getMovieCredits(id) {
+    return tmdbApi.get(`/movie/${id}/credits`);
+  },
+
+  getMovieProviders(id) {
+    return tmdbApi.get(`/movie/${id}/watch/providers`);
+  },
+
+  getSimilarMovies(id) {
+    return tmdbApi.get(`/movie/${id}/similar`);
+  },
 };

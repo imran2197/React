@@ -12,7 +12,7 @@ function NavBar() {
   ];
 
   return (
-    <nav className="relative sticky top-0 z-999 border-b border-gray-600 bg-gradient-to-r from-black via-gray-900 to-black text-white shadow-lg">
+    <nav className="relative sticky top-0 z-999 border-b border-gray-700 bg-gradient-to-r from-black via-gray-800 to-black text-white shadow-lg">
       <div className="flex items-center justify-between px-6 py-4">
         <Link
           to="/"

@@ -1,7 +1,10 @@
 import React from "react";
 import { IMAGE_BASE_URL } from "../constants/tmdb.constants";
+import { useNavigate } from "react-router-dom";
 
 function MovieCard({ movie, watchList, addToWatchList, removeFromWatchList }) {
+  const navigate = useNavigate();
+
   const isInWatchList = watchList.some((item) => item.id == movie.id);
 
   const handleWishlist = (e, movie) => {
@@ -14,7 +17,10 @@ function MovieCard({ movie, watchList, addToWatchList, removeFromWatchList }) {
   };
 
   return (
-    <div className="relative h-[40vh] w-60 rounded-xl overflow-hidden shadow-lg group cursor-pointer transform transition duration-300 hover:scale-105">
+    <div
+      className="relative h-[40vh] w-60 rounded-xl overflow-hidden shadow-lg group cursor-pointer transform transition duration-300 hover:scale-105"
+      onClick={() => navigate(`/popularmovies/${movie.id}`)}
+    >
       {/* Poster Image */}
       <img
         src={`${IMAGE_BASE_URL}/w500${movie.poster_path}`}
