@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
 import { IMAGE_BASE_URL } from "../constants/tmdb.constants";
 import "../index.css";
+import { useNavigate } from "react-router-dom";
 
 function MovieRow({ title, movies }) {
+  const navigate = useNavigate();
   const rowRef = useRef(null);
 
   const scroll = (direction) => {
@@ -43,7 +45,8 @@ function MovieRow({ title, movies }) {
             className="min-w-[200px] md:min-w-[200px]
                        h-[300px] rounded-xl overflow-hidden
                        transition-transform duration-300
-                       hover:scale-105"
+                       hover:scale-105 cursor-pointer"
+            onClick={() => navigate(`/popularmovies/${movie.id}`)}
           >
             <img
               src={`${IMAGE_BASE_URL}/w500${movie.poster_path}`}

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const IMAGE_BASE = "https://image.tmdb.org/t/p/original";
 
 function HeroCarousel({ movies }) {
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Auto slide
@@ -39,10 +41,10 @@ function HeroCarousel({ movies }) {
         </p>
 
         <div className="flex gap-4">
-          <button className="bg-white text-black px-4 py-2 rounded-md font-semibold">
-            ▶ Watch Trailer
-          </button>
-          <button className="bg-gray-700/80 px-6 py-2 rounded-md">
+          <button
+            className="bg-gray-700/80 px-6 py-2 rounded-md cursor-pointer"
+            onClick={() => navigate(`/popularmovies/${movies[activeIndex].id}`)}
+          >
             More Info
           </button>
         </div>

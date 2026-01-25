@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { tmdbService } from "../services/tmdb.service";
 import { IMAGE_BASE_URL } from "../constants/tmdb.constants";
+import WatchListContext from "../context/WatchListContext";
+import WatchTrailerModal from "./WatchTrailerModal";
 
 const MovieDetails = () => {
+  const { watchList, addToWatchList, removeFromWatchList } =
+    useContext(WatchListContext);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [movie, setMovie] = useState(null);
   const [cast, setCast] = useState([]);
@@ -50,6 +55,40 @@ const MovieDetails = () => {
     return () => window.removeEventListener("keydown", handleEsc);
   }, [id]);
 
+  const navigateToSimilarMovie = (m) => {
+    navigate(`/popularmovies/${m.id}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const isInWatchList = watchList.some((item) => item?.id == movie?.id);
+
+  const normalizeMovieDetails = (movie) => {
+    return {
+      adult: movie.adult ?? false,
+      backdrop_path: movie.backdrop_path,
+      genre_ids: movie.genres?.map((g) => g.id) || [],
+      id: movie.id,
+      original_language: movie.original_language,
+      original_title: movie.original_title,
+      overview: movie.overview,
+      popularity: movie.popularity,
+      poster_path: movie.poster_path,
+      release_date: movie.release_date,
+      title: movie.title,
+      video: movie.video ?? false,
+      vote_average: movie.vote_average,
+      vote_count: movie.vote_count,
+    };
+  };
+
+  const handleAddToWatchlist = () => {
+    if (isInWatchList) {
+      removeFromWatchList(normalizeMovieDetails(movie));
+    } else {
+      addToWatchList(normalizeMovieDetails(movie));
+    }
+  };
+
   if (!movie) return null;
 
   return (
@@ -85,8 +124,15 @@ const MovieDetails = () => {
                 </button>
               )}
 
-              <button className="border px-5 py-2 rounded-md cursor-pointer font-semibold text-white">
-                ❤️ Add to Watchlist
+              <button
+                className={`border px-6 py-2 rounded-md font-semibold cursor-pointer ${
+                  isInWatchList
+                    ? "bg-green-600 text-white"
+                    : "bg-black/70 text-white hover:bg-[#ffa300] hover:text-black"
+                }`}
+                onClick={handleAddToWatchlist}
+              >
+                {isInWatchList ? "✓ In Watchlist" : "+ Add Watchlist"}
               </button>
             </div>
           </div>
@@ -128,7 +174,7 @@ const MovieDetails = () => {
         )}
 
         {/* Cast */}
-        <div>
+        <div className="mb-5">
           <h3 className="text-xl font-bold mb-4">Top Cast</h3>
           <div className="flex gap-4 overflow-x-auto">
             {cast.map((c) => (
@@ -136,9 +182,9 @@ const MovieDetails = () => {
                 <img
                   src={`${IMAGE_BASE_URL}/w185${c.profile_path}`}
                   alt={c.name}
-                  className="rounded-lg mb-1"
+                  className="rounded-lg bg-cover mb-1 max-w-30"
                 />
-                <p className="text-sm">{c.name}</p>
+                <p className="text-sm truncate ">{c.name}</p>
               </div>
             ))}
           </div>
@@ -152,44 +198,28 @@ const MovieDetails = () => {
               similar.map((m) => (
                 <div key={m.id} className="cursor-pointer">
                   <img
-                    className="rounded-lg bg-cover w-35 hover:scale-105 transition"
+                    className="rounded-lg bg-cover w-50 h-70 hover:scale-105 transition"
                     src={`${IMAGE_BASE_URL}/w342${m.poster_path}`}
                     alt="m.title"
+                    onClick={() => navigateToSimilarMovie(m)}
                   />
                 </div>
               ))}
+            {similar.length == 0 && (
+              <div className="text-center text-gray-500 font-bold">
+                No Movies Available
+              </div>
+            )}
           </div>
         </section>
       </div>
 
       {/* TRAILER MODAL */}
       {showTrailer && (
-        <div
-          className="fixed inset-0 bg-black/95 flex items-center justify-center z-50"
-          onClick={() => setShowTrailer(false)}
-        >
-          <div
-            className="relative w-[90%] md:w-200 aspect-video"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="absolute -top-10 right-0 text-white text-2xl font-bold hover:text-red-500 transition cursor-pointer"
-              aria-label="Close trailer"
-              onClick={() => setShowTrailer(false)}
-            >
-              ✕
-            </button>
-
-            {/* Trailer */}
-            <iframe
-              className="w-full h-full rounder-lg"
-              src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1`}
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              title="Trailer"
-            />
-          </div>
-        </div>
+        <WatchTrailerModal
+          setShowTrailer={() => setShowTrailer(false)}
+          trailerKey={trailerKey}
+        />
       )}
     </div>
   );

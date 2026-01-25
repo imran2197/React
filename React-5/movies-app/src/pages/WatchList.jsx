@@ -21,7 +21,7 @@ function WatchList() {
     const uniqueGenres = [];
     [...new Set(watchList.flatMap((movie) => movie.genre_ids))].map((id) => {
       const found = genres.find((item) => item.id == id);
-      uniqueGenres.push(found.name);
+      uniqueGenres.push(found?.name);
     });
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setGenreTiles(uniqueGenres);
