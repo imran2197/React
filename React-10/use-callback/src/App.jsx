@@ -1,10 +1,10 @@
 import React from "react";
-import Stopwatch from "./components/Stopwatch";
+import Counter from "./assets/components/Counter";
 
 const App = () => {
   return (
     <div>
-      <Stopwatch />
+      <Counter />
     </div>
   );
 };
