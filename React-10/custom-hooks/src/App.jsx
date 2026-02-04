@@ -1,10 +1,12 @@
 import React from "react";
 import Person from "./components/Person";
+import Product from "./components/Product";
 
 const App = () => {
   return (
     <div>
-      <Person />
+      {/* <Person /> */}
+      <Product />
     </div>
   );
 };
