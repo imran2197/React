@@ -1,7 +1,12 @@
 import React from "react";
+import Carousel from "./components/Carousel";
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div>
+      <Carousel />
+    </div>
+  );
 };
 
 export default App;
