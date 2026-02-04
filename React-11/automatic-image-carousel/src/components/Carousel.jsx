@@ -2,6 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Products } from "./ProductsMock";
 import "../App.css";
 
+// Problem Statement: Automatic Image Carousel
+// Create a simple image carousel component in React that automatically cycles through a list of images, displaying one image at a time. The carousel should also allow users to manually navigate to the next or previous image using buttons.
+
+// Features:
+
+// Automatically cycles through images every 2 seconds.
+// Manual navigation to the next or previous image using buttons.
+// Displays image, title, and description for each item.
+
 const Carousel = () => {
   const [index, setIndex] = useState(0);
   useEffect(() => {
